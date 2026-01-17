@@ -60,7 +60,7 @@ Open index.html in any modern web browser
  **Online Appointment Page**  
 ![Appointment Page](images/form.png)
 
- **Gallery Page**  
+ **Footer Page**  
 ![Gallery Page](images/footer.png)
 
 
