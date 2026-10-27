@@ -105,6 +105,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Floating Actions Dismiss functionality (temporary until refresh)
+  const floatCloseBtns = document.querySelectorAll(".float-close-btn");
+  floatCloseBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const targetId = btn.getAttribute("data-target");
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.classList.add("dismissed");
+        setTimeout(() => {
+          targetEl.style.display = "none";
+        }, 250);
+      }
+    });
+  });
+
   // Smooth scroll for all hash links with proper header offset
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
