@@ -77,6 +77,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 body {
@@ -84,7 +85,7 @@ body {
   color: var(--color-body);
   background-color: var(--color-bg-page);
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -324,20 +325,23 @@ ul {
 }
 
 /* Main Sticky Header */
-header {
+header,
+#main-header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-sm);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 header.scrolled {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 2px 0;
 }
 
 .header-container {
@@ -3191,7 +3195,7 @@ header.scrolled {
 @media (max-width: 768px) {
   /* Global Page Fixes */
   html, body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     position: relative;
     max-width: 100vw;
   }
@@ -3258,8 +3262,14 @@ header.scrolled {
     display: none !important;
   }
 
-  /* Mobile Header & Overlay Stacking: Header is fixed at 2000 so drawer is NEVER below overlay */
-  header {
+  /* Mobile Header & Overlay Stacking: Sticky at top 0 */
+  header,
+  #main-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 2000;
   }
 
