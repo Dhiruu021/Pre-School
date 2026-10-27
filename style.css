@@ -2736,7 +2736,7 @@ header.scrolled {
   .logo-icon-wrap {
     width: 44px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 50%;
   }
 
   .school-title {
@@ -2778,6 +2778,15 @@ header.scrolled {
     display: none !important;
   }
 
+  /* Stacking context fix: ensure header sits above overlay when drawer is open */
+  header.drawer-open,
+  header:has(.navbar.active),
+  body.drawer-open header {
+    z-index: 2001;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   /* Mobile Full Height Overlay */
   .mobile-overlay {
     position: fixed;
@@ -2786,10 +2795,8 @@ header.scrolled {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 1999;
+    background: rgba(15, 23, 42, 0.5);
+    z-index: 1998;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -2812,19 +2819,24 @@ header.scrolled {
     height: 100vh;
     height: 100dvh;
     background: #FFFFFF;
-    box-shadow: -15px 0 40px rgba(15, 23, 42, 0.25);
-    z-index: 2000;
+    box-shadow: none; /* No shadow when closed - prevents blackness on screen edge */
+    z-index: 2002;
     display: flex;
     flex-direction: column;
     padding: 0;
-    transform: translateX(105%);
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateX(120%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.35s ease, box-shadow 0.35s ease;
     overflow-y: auto;
     border-radius: 20px 0 0 20px;
   }
 
   .navbar.active {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    box-shadow: -15px 0 40px rgba(15, 23, 42, 0.25);
   }
 
   /* Drawer Header */

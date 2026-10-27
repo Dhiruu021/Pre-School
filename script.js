@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       navbar.classList.remove("active");
       menuToggle.classList.remove("active");
       mobileOverlay.classList.remove("active");
+      if (header) header.classList.remove("drawer-open");
+      document.body.classList.remove("drawer-open");
       document.body.style.overflow = "";
     }
   };
@@ -29,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
     navbar.classList.add("active");
     menuToggle.classList.add("active");
     mobileOverlay.classList.add("active");
+    if (header) header.classList.add("drawer-open");
+    document.body.classList.add("drawer-open");
     document.body.style.overflow = "hidden";
   };
 
